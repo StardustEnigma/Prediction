@@ -15,9 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.contrib.auth import views as auth_views
+from django.urls import path,include
 from . import views
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.home,  name='home')
+    path('',views.home,  name='home'),
+    path("login/", views.custom_login, name="custom_login"),
+    path('dashboard',views.dash,name='dashboard')
+    
 ]
+if settings.DEBUG:
+    # Include django_browser_reload URLs only in DEBUG mode
+    urlpatterns += [
+        path("__reload__/", include("django_browser_reload.urls")),
+    ]

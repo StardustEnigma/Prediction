@@ -23,8 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.home,  name='home'),
     path("login/", views.custom_login, name="custom_login"),
-    path('dashboard',views.dash,name='dashboard')
-    
+    path("logout/", views.custom_logout, name="custom_logout"),
+    path('dashboard',views.dash,name='dashboard'),
+     path('employee/',include('employee.urls')),
 ]
 if settings.DEBUG:
     # Include django_browser_reload URLs only in DEBUG mode

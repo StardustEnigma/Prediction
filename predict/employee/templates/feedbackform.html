@@ -17,48 +17,100 @@
             font-family: 'Inter', sans-serif;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #8b5cf6 100%);
+            background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #a855f7 100%);
         }
         .btn-primary {
-            background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+            background: linear-gradient(135deg, #9d72f5 0%, #8b5cf6 100%);
         }
         .btn-secondary {
-            background: rgba(168, 85, 247, 0.1);
-            border: 2px solid #a855f7;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #c4b5fd;
             color: #7c3aed;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         .btn-secondary:hover {
-            background: #a855f7;
-            color: white;
+            background: #f3e8ff;
+            color: #6b21a8;
+            border-color: #a855f7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
         }
         .form-field {
             transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
         }
         .form-field:focus {
-            border-color: #a855f7;
-            box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-1px);
         }
         .logo-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #a855f7 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        /* Vibrant lavender backgrounds */
+        .lavender-bg {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 25%, #e9d5ff 50%, #ddd6fe 75%, #c4b5fd 100%);
+        }
+        .lavender-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fefcff 25%, #faf5ff 75%, #f3e8ff 100%);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15);
+        }
+        .lavender-info-card {
+            background: linear-gradient(135deg, #f8f5ff 0%, #f1eff4 50%, #ebe8f0 100%);
+            border: 1px solid rgba(139, 125, 184, 0.3);
+            box-shadow: 0 4px 15px rgba(108, 91, 123, 0.1);
+        }
+        /* Professional yet vibrant colors */
+        .text-lavender-600 { color: #8b5cf6; }
+        .text-lavender-700 { color: #7c3aed; }
+        .text-lavender-500 { color: #a855f7; }
+        .text-lavender-800 { color: #6b21a8; }
+        /* Vibrant icon gradients */
+        .icon-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #c084fc 100%);
+        }
+        /* Glow effects */
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+        }
+        .glow-effect:hover {
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+        }
+        /* Enhanced fieldset styling */
+        .fieldset-card {
+            background: linear-gradient(135deg, #fdfdfd 0%, #f9f8fb 50%, #f5f3f8 100%);
+            border: 1px solid rgba(139, 125, 184, 0.15);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .fieldset-card:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 via-purple-50 to-violet-50 min-h-screen flex flex-col">
+<body class="lavender-bg min-h-screen flex flex-col">
     <!-- Header -->
-    <header class="gradient-bg shadow-lg">
+    <header class="gradient-bg shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between flex-wrap">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-gradient-to-br from-purple-400 to-violet-500 rounded-xl flex items-center justify-center shadow-lg">
+                <div class="w-10 h-10 icon-gradient rounded-xl flex items-center justify-center shadow-lg glow-effect">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                               d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
@@ -69,52 +121,54 @@
                 </h1>
             </div>
             <a href="{% url 'dashboard' %}"
-               class="mt-4 sm:mt-0 text-purple-100 hover:text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 whitespace-nowrap">
+               class="mt-4 sm:mt-0 text-purple-100 hover:text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 whitespace-nowrap hover:bg-white/10 backdrop-blur-sm">
                 ← Back to Dashboard
             </a>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+    <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         <!-- Form Header -->
         <section class="text-center mb-12 px-2">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Employee Feedback Form
             </h2>
-            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p class="text-xl md:text-2xl text-lavender-700 max-w-3xl mx-auto font-medium leading-relaxed">
                 Help us analyze retention patterns by providing comprehensive employee information for our AI-powered insights.
             </p>
         </section>
 
         <!-- Form Card -->
-        <section class="bg-white rounded-2xl shadow-xl border border-purple-100 overflow-hidden p-6 sm:p-10">
+        <section class="lavender-card rounded-2xl overflow-hidden p-6 sm:p-10">
             <form method="post" class="space-y-8" novalidate>
                 {% csrf_token %}
 
                 <!-- Personal Information Section -->
-                <fieldset class="border-b border-purple-100 pb-8">
-                    <legend class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
-                        <svg class="w-6 h-6 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                        </svg>
-                        Personal Information
-                    </legend>
+                <div class="fieldset-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 icon-gradient rounded-xl flex items-center justify-center shadow-lg glow-effect mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Personal Information</h3>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {% for field in form %}
                             {% if field.name in "employee_id age gender marital_status education health_condition" %}
                             <div>
-                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-lavender-800 mb-3">
                                     {{ field.label }}
-                                    {% if field.field.required %} <span class="text-red-600">*</span>{% endif %}
+                                    {% if field.field.required %} <span class="text-red-500">*</span>{% endif %}
                                 </label>
-                                {{ field|add_class:"form-field w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-0 text-gray-900" }}
+                                {{ field|add_class:"form-field w-full px-4 py-4 border border-purple-200 rounded-xl focus:outline-none focus:ring-0 text-gray-900 font-medium" }}
                                 {% if field.help_text %}
-                                <p class="text-xs text-gray-400 mt-1">{{ field.help_text }}</p>
+                                <p class="text-xs text-lavender-600 mt-2">{{ field.help_text }}</p>
                                 {% endif %}
                                 {% if field.errors %}
-                                    <ul class="text-red-600 text-sm mt-1 list-disc list-inside">
+                                    <ul class="text-red-600 text-sm mt-2 list-disc list-inside">
                                     {% for error in field.errors %}
                                         <li>{{ error }}</li>
                                     {% endfor %}
@@ -124,31 +178,33 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                </fieldset>
+                </div>
 
                 <!-- Work Information Section -->
-                <fieldset class="border-b border-purple-100 pb-8">
-                    <legend class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
-                        <svg class="w-6 h-6 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6"></path>
-                        </svg>
-                        Work Information
-                    </legend>
+                <div class="fieldset-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 icon-gradient rounded-xl flex items-center justify-center shadow-lg glow-effect mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Work Information</h3>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {% for field in form %}
                             {% if field.name in "years_at_company working_hours distance_from_home expectations_from_company" %}
                             <div>
-                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-lavender-800 mb-3">
                                     {{ field.label }}
-                                    {% if field.field.required %} <span class="text-red-600">*</span>{% endif %}
+                                    {% if field.field.required %} <span class="text-red-500">*</span>{% endif %}
                                 </label>
-                                {{ field|add_class:"form-field w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-0 text-gray-900" }}
+                                {{ field|add_class:"form-field w-full px-4 py-4 border border-purple-200 rounded-xl focus:outline-none focus:ring-0 text-gray-900 font-medium" }}
                                 {% if field.help_text %}
-                                <p class="text-xs text-gray-400 mt-1">{{ field.help_text }}</p>
+                                <p class="text-xs text-lavender-600 mt-2">{{ field.help_text }}</p>
                                 {% endif %}
                                 {% if field.errors %}
-                                    <ul class="text-red-600 text-sm mt-1 list-disc list-inside">
+                                    <ul class="text-red-600 text-sm mt-2 list-disc list-inside">
                                     {% for error in field.errors %}
                                         <li>{{ error }}</li>
                                     {% endfor %}
@@ -158,31 +214,33 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                </fieldset>
+                </div>
 
                 <!-- Satisfaction & Compensation Section -->
-                <fieldset>
-                    <legend class="text-2xl font-semibold text-gray-900 mb-6 flex items-center">
-                        <svg class="w-6 h-6 text-purple-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        Satisfaction & Compensation
-                    </legend>
+                <div class="fieldset-card">
+                    <div class="flex items-center mb-8">
+                        <div class="w-12 h-12 icon-gradient rounded-xl flex items-center justify-center shadow-lg glow-effect mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Satisfaction & Compensation</h3>
+                    </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {% for field in form %}
                             {% if field.name in "job_satisfaction environment_satisfaction joining_salary current_salary" %}
                             <div>
-                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-gray-700 mb-2">
+                                <label for="{{ field.id_for_label }}" class="block text-sm font-semibold text-lavender-800 mb-3">
                                     {{ field.label }}
-                                    {% if field.field.required %} <span class="text-red-600">*</span>{% endif %}
+                                    {% if field.field.required %} <span class="text-red-500">*</span>{% endif %}
                                 </label>
-                                {{ field|add_class:"form-field w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-0 text-gray-900" }}
+                                {{ field|add_class:"form-field w-full px-4 py-4 border border-purple-200 rounded-xl focus:outline-none focus:ring-0 text-gray-900 font-medium" }}
                                 {% if field.help_text %}
-                                <p class="text-xs text-gray-400 mt-1">{{ field.help_text }}</p>
+                                <p class="text-xs text-lavender-600 mt-2">{{ field.help_text }}</p>
                                 {% endif %}
                                 {% if field.errors %}
-                                    <ul class="text-red-600 text-sm mt-1 list-disc list-inside">
+                                    <ul class="text-red-600 text-sm mt-2 list-disc list-inside">
                                     {% for error in field.errors %}
                                         <li>{{ error }}</li>
                                     {% endfor %}
@@ -192,13 +250,13 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                </fieldset>
+                </div>
 
                 <!-- Form Actions -->
                 <div class="flex flex-col sm:flex-row gap-4 pt-8">
                     <button 
                         type="submit"
-                        class="btn-primary flex-1 text-white font-semibold py-4 px-8 rounded-xl text-lg flex items-center justify-center"
+                        class="btn-primary flex-1 text-white font-semibold py-4 px-8 rounded-xl text-lg flex items-center justify-center transform hover:scale-105 transition-all duration-300"
                         aria-label="Submit Feedback"
                     >
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -209,7 +267,7 @@
                     <button 
                         type="button"
                         onclick="window.history.back()" 
-                        class="btn-secondary flex-1 font-semibold py-4 px-8 rounded-xl text-lg flex items-center justify-center"
+                        class="btn-secondary flex-1 font-semibold py-4 px-8 rounded-xl text-lg flex items-center justify-center transform hover:scale-105 transition-all duration-300"
                         aria-label="Cancel and go back"
                     >
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -222,16 +280,18 @@
         </section>
 
         <!-- Info Section -->
-        <section class="mt-12 bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl border border-purple-100 p-6 sm:p-8">
+        <section class="mt-12 lavender-info-card rounded-2xl p-6 sm:p-8">
             <div class="flex items-start space-x-4">
                 <div class="flex-shrink-0">
-                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                    <div class="w-10 h-10 icon-gradient rounded-xl flex items-center justify-center shadow-lg glow-effect">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
                 </div>
                 <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">About This Form</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">About This Form</h4>
+                    <p class="text-gray-700 font-medium leading-relaxed">
                         This comprehensive feedback form helps our AI system analyze employee retention patterns and predict potential attrition risks.
                         All information provided is kept confidential and used solely for predictive analytics to improve workplace satisfaction and retention strategies.
                     </p>

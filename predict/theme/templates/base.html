@@ -180,7 +180,7 @@
                   {% endif %}
                   
                   <!-- Feedback Form -->
-                  <a href="employee:feedback" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Feedback</a>
+                  <a href="{% url "employee:feedback" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Feedback</a>
               </div>
 
               <!-- CTA Buttons -->
@@ -263,7 +263,7 @@
                   </div>
               {% endif %}
               
-              <a href="employee:feedback" class="block px-4 py-3 text-purple-100 hover:text-white hover:bg-purple-800/60 rounded-lg">
+              <a href="{% url "employee:feedback" %}" class="block px-4 py-3 text-purple-100 hover:text-white hover:bg-purple-800/60 rounded-lg">
                   Feedback
               </a>
           </div>

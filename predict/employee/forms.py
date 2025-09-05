@@ -51,3 +51,5 @@ class EmployeeAttritionForm(forms.ModelForm):
                 field.empty_label = None  # removes the "---------" option
             else:
                 field.widget.attrs.update({'class': 'form-control'})
+class CSVUploadForm(forms.Form):
+    file = forms.FileField(label="Upload Employee CSV")

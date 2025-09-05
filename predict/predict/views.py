@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages  
-
+from django.contrib.auth.decorators import login_required
 def custom_login(request):
     if request.method == "POST":
         username = request.POST.get("username")
@@ -28,3 +28,25 @@ def custom_logout(request):
     logout(request)
     messages.success(request, "You have been logged out successfully.")
     return redirect("custom_login")
+def president_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+
+        # Check if user exists AND is a President
+        if user is not None and getattr(user, 'is_active_president', False):
+            login(request, user)
+            return redirect('employee:president_dashboard')  # president dashboard
+        else:
+            error = "Invalid credentials or you are not a President."
+            return render(request, 'plogin.html', {'error': error})  # <-- use plogin.html
+
+    return render(request, 'plogin.html')  # <-- use plogin.html consistently
+
+    # <-- uses your login.html
+@login_required
+def president_logout(request):
+    logout(request)
+    return redirect('president_login')

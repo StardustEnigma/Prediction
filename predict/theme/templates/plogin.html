@@ -1,0 +1,346 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>President Login - AttritionAI</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% tailwind_css %}
+    <style>
+        html, body { 
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #fefcff 0%, #faf5ff 20%, #f3e8ff 40%, #ede9fe 60%, #e9d5ff 80%, #ddd6fe 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .playfair { font-family: 'Playfair Display', serif; }
+        
+        /* Compact Premium Lavender Presidential Theme */
+        .president-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 25%, #6d28d9 50%, #5b21b6 75%, #4c1d95 100%);
+        }
+        
+        .president-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15);
+        }
+        
+        .president-input {
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(139, 92, 246, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .president-input:focus {
+            background: rgba(255, 255, 255, 0.98);
+            border-color: rgba(139, 92, 246, 0.6);
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+            outline: none;
+        }
+        
+        .president-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 25%, #6d28d9 75%, #5b21b6 100%);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .president-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.5);
+            background: linear-gradient(135deg, #a855f7 0%, #8b5cf6 25%, #7c3aed 75%, #6d28d9 100%);
+        }
+        
+        .president-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .president-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Compact Crown Animation */
+        .crown-icon {
+            animation: royal-float 3s ease-in-out infinite;
+        }
+        
+        @keyframes royal-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-4px); }
+        }
+        
+        /* Compact Decorative Elements */
+        .decorative-border {
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.4), transparent);
+            height: 2px;
+        }
+        
+        /* Lavender Accent Elements */
+        .lavender-accent {
+            background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #8b5cf6 100%);
+        }
+        
+        /* Executive Typography */
+        .executive-text {
+            background: linear-gradient(135deg, #4c1d95 0%, #5b21b6 25%, #6d28d9 50%, #7c3aed 75%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Security Badge */
+        .security-badge {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Back Button */
+        .back-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.98);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        /* Compact Visual Effects */
+        .premium-glow {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Input Icons */
+        .input-icon {
+            color: #8b5cf6;
+        }
+        
+        /* Viewport-Based Sizing */
+        .container-height {
+            height: 100vh;
+            max-height: 100vh;
+        }
+    </style>
+</head>
+<body class="container-height flex items-center justify-center p-4">
+    <!-- Compact Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-16 left-16 w-24 h-24 lavender-accent rounded-full opacity-20 blur-lg"></div>
+        <div class="absolute bottom-16 right-16 w-20 h-20 lavender-accent rounded-full opacity-15 blur-md"></div>
+        <div class="absolute top-1/2 left-8 w-16 h-16 lavender-accent rounded-full opacity-10 blur-sm"></div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'home' %}" class="back-btn fixed top-4 left-4 px-4 py-2 rounded-lg font-medium text-gray-700 hover:text-gray-900 text-sm z-10">
+        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        Back
+    </a>
+
+    <!-- Main Compact Container -->
+    <div class="w-full max-w-md mx-auto relative z-10">
+        <!-- Compact Header -->
+        <div class="text-center mb-6">
+            <!-- Compact Logo -->
+            <div class="flex justify-center mb-4">
+                <div class="w-16 h-16 president-gradient rounded-2xl flex items-center justify-center shadow-xl premium-glow">
+                    <svg class="w-8 h-8 text-white crown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 3l4 6l5-6l5 6l4-6v7c0 6-4 12-9 12s-9-6-9-12V3z"></path>
+                    </svg>
+                </div>
+            </div>
+            
+            <!-- Compact Welcome Message -->
+            <h1 class="playfair text-3xl font-bold executive-text mb-2">
+                Welcome Back, President
+            </h1>
+            <p class="text-gray-600 font-medium text-sm">
+                Premium Executive Access
+            </p>
+            
+            <!-- Compact Decorative Border -->
+            <div class="decorative-border w-24 mx-auto mt-3"></div>
+        </div>
+
+        <!-- Compact Login Card -->
+        <div class="president-card rounded-2xl p-6 shadow-xl">
+            <!-- Compact Security Badge -->
+            <div class="flex items-center justify-center mb-5">
+                <div class="security-badge px-4 py-2 rounded-full flex items-center space-x-2">
+                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                    <span class="text-white text-sm font-semibold">Secure Access</span>
+                </div>
+            </div>
+
+            <!-- Compact Login Form -->
+            <form method="post" class="space-y-4">
+                {% csrf_token %}
+                
+                <!-- Username Field -->
+                <div>
+                    <label for="username" class="block text-xs font-bold text-gray-700 mb-2">
+                        Presidential Username
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            required
+                            class="president-input w-full pl-10 pr-4 py-3 rounded-xl font-medium text-sm"
+                            placeholder="Enter presidential username"
+                            autocomplete="username"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-xs font-bold text-gray-700 mb-2">
+                        Security Password
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-4 h-4 input-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required
+                            class="president-input w-full pl-10 pr-4 py-3 rounded-xl font-medium text-sm"
+                            placeholder="Enter secure password"
+                            autocomplete="current-password"
+                        >
+                    </div>
+                </div>
+
+                <!-- Compact Options -->
+                <div class="flex items-center justify-between text-xs">
+                    <div class="flex items-center">
+                        <input 
+                            id="remember" 
+                            name="remember" 
+                            type="checkbox" 
+                            class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                        >
+                        <label for="remember" class="ml-2 text-gray-700 font-medium">
+                            Remember device
+                        </label>
+                    </div>
+                    <a href="#" class="font-bold text-purple-600 hover:text-purple-700">
+                        Reset Password
+                    </a>
+                </div>
+
+                <!-- Compact Login Button -->
+                <button 
+                    type="submit" 
+                    class="president-btn w-full py-3 px-4 rounded-xl text-white font-bold text-sm relative overflow-hidden mt-4"
+                >
+                    <span class="relative z-10 flex items-center justify-center">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                        </svg>
+                        Access Executive Dashboard
+                    </span>
+                </button>
+            </form>
+
+            <!-- Compact Security Info -->
+            <div class="mt-4 pt-4 border-t border-gray-200">
+                <div class="flex justify-center space-x-6 text-xs text-gray-600">
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <span>SSL</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                        <span>Encrypted</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 mr-1 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        <span>Secure</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% if error %}
+<p class="text-red-500 text-sm">{{ error }}</p>
+{% endif %}
+
+        <!-- Compact Footer -->
+        <div class="text-center mt-4">
+            <p class="text-xs text-gray-600">
+                Need help? <a href="mailto:president@attritionai.com" class="text-purple-600 hover:text-purple-700 font-semibold">Executive Support</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Optimized JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.president-input');
+            const form = document.querySelector('form');
+            const submitButton = document.querySelector('.president-btn');
+            
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+
+            form.addEventListener('submit', function(e) {
+                submitButton.innerHTML = `
+                    <span class="relative z-10 flex items-center justify-center">
+                        <svg class="animate-spin h-4 w-4 mr-2 text-white" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Authenticating...
+                    </span>
+                `;
+                submitButton.disabled = true;
+            });
+        });
+    </script>
+</body>
+</html>

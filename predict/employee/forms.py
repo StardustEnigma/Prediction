@@ -1,6 +1,14 @@
 from django import forms
 from .models import EmployeeAttrition
+from employee.models import President
+from django.contrib.auth.forms import UserCreationForm
 
+class SubAdminCreationForm(UserCreationForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = President
+        fields = ("username", "email", "password1", "password2", "is_staff")
 
 class EmployeeAttritionForm(forms.ModelForm):
     class Meta:
@@ -9,6 +17,7 @@ class EmployeeAttritionForm(forms.ModelForm):
         exclude = ['attrition']  
         widgets = {
             'employee_id': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),  # Added name field
             'age': forms.NumberInput(attrs={'class': 'form-control', 'min': 18, 'max': 65}),
             'gender': forms.Select(attrs={'class': 'form-select'}),
             'marital_status': forms.Select(attrs={'class': 'form-select'}),

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 
+
 # Custom President user model
 class President(AbstractUser):
     is_active_president = models.BooleanField(default=False)
@@ -24,7 +25,7 @@ class President(AbstractUser):
 # Employee attrition data model
 class EmployeeAttrition(models.Model):
     employee_id = models.CharField(max_length=20, unique=True)
-    name = models.CharField(max_length=100, default='Unknown')  # Added default
+    name = models.CharField(max_length=100, default='Unknown')
     age = models.PositiveIntegerField()
 
     GENDER_CHOICES = [('Male', 'Male'), ('Female', 'Female')]
@@ -76,6 +77,17 @@ class EmployeeAttrition(models.Model):
     education = models.CharField(max_length=12, choices=EDUCATION_CHOICES, default='Bachelor')
 
     attrition = models.BooleanField(default=False)
+    
+    # ✅ NEW FIELDS - Add these two lines
+    attrition_probability = models.FloatField(
+        null=True, 
+        blank=True, 
+        help_text="ML-predicted attrition risk percentage"
+    )
+    is_retained = models.BooleanField(
+        default=False, 
+        help_text="Automatically set to True if attrition risk < 25%"
+    )
 
     DATA_SOURCE_CHOICES = [
         ('Feedback Form', 'Feedback Form'),
@@ -87,5 +99,12 @@ class EmployeeAttrition(models.Model):
         default='Feedback Form'
     )
 
+    created_at = models.DateTimeField(auto_now_add=True)  # ✅ Add timestamp
+
     def __str__(self):
         return f"{self.employee_id} - {self.name} - {self.marital_status}"
+
+    class Meta:
+        verbose_name = "Employee Attrition"
+        verbose_name_plural = "Employee Attritions"
+        ordering = ['-created_at']  # Show newest first

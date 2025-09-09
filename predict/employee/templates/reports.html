@@ -1,0 +1,235 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Reports - Employee Retention Predictor{% endblock %}
+
+{% block content %}
+<!-- Reports Header -->
+<div class="lavender-bg py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                📊 Employee Reports & Analytics
+            </h1>
+            <p class="text-lg text-lavender-700 font-medium max-w-2xl mx-auto">
+                Download comprehensive reports and analyze employee retention data with advanced filtering
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="py-8 lavender-bg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <!-- Total Employees -->
+            <div class="lavender-card p-6 rounded-xl text-center">
+                <div class="text-2xl font-bold text-gray-900 mb-2">{{ total_employees }}</div>
+                <div class="text-sm text-lavender-600 font-medium">Total Employees</div>
+            </div>
+            
+            <!-- Retained -->
+            <div class="lavender-card p-6 rounded-xl text-center">
+                <div class="text-2xl font-bold text-green-600 mb-2">{{ retained_employees }}</div>
+                <div class="text-sm text-lavender-600 font-medium">Retained</div>
+            </div>
+            
+            <!-- At Risk -->
+            <div class="lavender-card p-6 rounded-xl text-center">
+                <div class="text-2xl font-bold text-red-600 mb-2">{{ attrition_employees }}</div>
+                <div class="text-sm text-lavender-600 font-medium">At Risk</div>
+            </div>
+            
+            <!-- High Risk -->
+            <div class="lavender-card p-6 rounded-xl text-center">
+                <div class="text-2xl font-bold text-red-500 mb-2">{{ high_risk }}</div>
+                <div class="text-sm text-lavender-600 font-medium">High Risk</div>
+            </div>
+            
+            <!-- Medium Risk -->
+            <div class="lavender-card p-6 rounded-xl text-center">
+                <div class="text-2xl font-bold text-yellow-500 mb-2">{{ medium_risk }}</div>
+                <div class="text-sm text-lavender-600 font-medium">Medium Risk</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Download Buttons & Search -->
+<div class="py-8 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Download Section -->
+        <div class="lavender-card p-8 rounded-xl mb-8">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">📥 Download Reports</h2>
+                <p class="text-lavender-600 font-medium">Export employee data based on retention status</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <!-- Download Attrition Employees -->
+                <a href="{% url 'employee:download_attrition_employees' %}" 
+                   class="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-xl font-semibold text-center min-w-[220px] transition-all duration-300 transform hover:scale-105">
+                    🚨 Download Attrition Risk Employees
+                </a>
+                
+                <!-- Download Retention Employees -->
+                <a href="{% url 'employee:download_retention_employees' %}" 
+                   class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold text-center min-w-[220px] transition-all duration-300 transform hover:scale-105">
+                    ✅ Download Retained Employees
+                </a>
+            </div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="lavender-card p-6 rounded-xl mb-8">
+            <form method="GET" class="flex flex-col sm:flex-row gap-4">
+                <div class="flex-grow">
+                    <input type="text" 
+                           name="search" 
+                           value="{{ search_query }}" 
+                           placeholder="🔍 Search by Employee Name or ID..." 
+                           class="w-full px-4 py-3 border border-lavender-200 rounded-xl focus:ring-2 focus:ring-lavender-500 focus:border-transparent font-medium">
+                </div>
+                <button type="submit" 
+                        class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[120px]">
+                    Search
+                </button>
+                {% if search_query %}
+                <a href="{% url 'employee:reports' %}" 
+                   class="btn-secondary text-lavender-700 hover:text-lavender-800 px-6 py-3 rounded-xl font-semibold min-w-[100px] text-center">
+                    Clear
+                </a>
+                {% endif %}
+            </form>
+        </div>
+
+        <!-- Results Summary -->
+        {% if search_query %}
+        <div class="mb-6">
+            <div class="bg-lavender-50 border border-lavender-200 rounded-xl p-4">
+                <p class="text-lavender-700 font-medium">
+                    🔍 Search Results for "<strong>{{ search_query }}</strong>": 
+                    <span class="font-bold">{{ employees.count }}</span> employee(s) found
+                </p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Employee List -->
+        <div class="lavender-card rounded-xl overflow-hidden">
+            <div class="bg-gradient-to-r from-lavender-600 to-lavender-500 px-6 py-4">
+                <h3 class="text-xl font-bold text-white">👥 All Employees</h3>
+            </div>
+            
+            {% if employees %}
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-lavender-50">
+                        <tr class="border-b border-lavender-200">
+                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Employee</th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900">Details</th>
+                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Risk Level</th>
+                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Status</th>
+                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-900">Data Source</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-lavender-100">
+                        {% for employee in employees %}
+                        <tr class="hover:bg-lavender-50 transition-colors duration-200">
+                            <!-- Employee Info -->
+                            <td class="px-6 py-4">
+                                <div class="font-semibold text-gray-900">{{ employee.name }}</div>
+                                <div class="text-sm text-gray-600">ID: {{ employee.employee_id }}</div>
+                                <div class="text-sm text-gray-600">{{ employee.age }} years old</div>
+                            </td>
+                            
+                            <!-- Details -->
+                            <td class="px-6 py-4">
+                                <div class="text-sm text-gray-700">
+                                    <div>{{ employee.gender }} • {{ employee.marital_status }}</div>
+                                    <div>{{ employee.years_at_company }} years at company</div>
+                                    <div>Job Satisfaction: {{ employee.job_satisfaction }}/5</div>
+                                </div>
+                            </td>
+                            
+                            <!-- Risk Level -->
+                            <td class="px-6 py-4 text-center">
+                                <div class="font-bold text-lg mb-1">{{ employee.attrition_probability|floatformat:1 }}%</div>
+                                {% if employee.attrition_probability >= 75 %}
+                                    <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
+                                        🔴 High Risk
+                                    </span>
+                                {% elif employee.attrition_probability >= 50 %}
+                                    <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-800">
+                                        🟡 Medium Risk
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                                        🟢 Low Risk
+                                    </span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- Status -->
+                            <td class="px-6 py-4 text-center">
+                                {% if employee.is_retained %}
+                                    <span class="inline-flex px-4 py-2 rounded-full text-sm font-semibold bg-green-100 text-green-800">
+                                        ✅ RETAINED
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex px-4 py-2 rounded-full text-sm font-semibold bg-red-100 text-red-800">
+                                        ⚠️ AT-RISK
+                                    </span>
+                                {% endif %}
+                            </td>
+                            
+                            <!-- Data Source -->
+                            <td class="px-6 py-4 text-center">
+                                <span class="text-sm font-medium text-lavender-600">
+                                    {{ employee.data_source }}
+                                </span>
+                                <div class="text-xs text-gray-500 mt-1">
+                                    {{ employee.created_at|date:"M d, Y" }}
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="p-12 text-center">
+                <div class="w-16 h-16 bg-lavender-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-lavender-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">No Employees Found</h3>
+                <p class="text-gray-600 font-medium">
+                    {% if search_query %}
+                        No employees match your search criteria. Try a different search term.
+                    {% else %}
+                        No employee data available. Upload CSV or add employee data through the feedback form.
+                    {% endif %}
+                </p>
+                {% if not search_query %}
+                <div class="mt-6">
+                    <a href="{% url 'employee:upload_csv' %}" class="btn-primary text-white px-6 py-3 rounded-xl font-semibold">
+                        📊 Upload CSV Data
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Footer Info -->
+        <div class="mt-8 text-center">
+            <p class="text-sm text-lavender-600 font-medium">
+                💡 Reports are generated in real-time based on the latest ML predictions
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -59,7 +59,9 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'predict.urls'
+from django.urls import reverse_lazy
 
+LOGIN_URL = reverse_lazy("custom_login")  
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

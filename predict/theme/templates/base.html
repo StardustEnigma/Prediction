@@ -169,9 +169,9 @@
               <div class="hidden lg:flex items-center space-x-6">
                   {% if user.is_authenticated %}
                       <a href="{% url "dashboard" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Dashboard</a>
-                      <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Prediction</a>
+                      <a href="{% url "employee:upload_csv" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Prediction</a>
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Analytics</a>
-                      <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Reports</a>
+                      <a href="{% url "employee:reports" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Reports</a>
                   {% else %}
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Home</a>
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Features</a>

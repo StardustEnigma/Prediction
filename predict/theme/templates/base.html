@@ -174,7 +174,7 @@
                       <a href="{% url "employee:reports" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Reports</a>
                   {% else %}
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Home</a>
-                      <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Features</a>
+                      <a href="{% url "features" %}" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Features</a>
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">About</a>
                       <a href="#" class="nav-link text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">Contact</a>
                   {% endif %}
@@ -300,23 +300,24 @@
                   </div>
                   
                   <!-- Call-to-Action Buttons -->
-                  <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                      {% if user.is_authenticated %}
-                          <button class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[200px]">
-                              🚀 Start Analysis
-                          </button>
-                          <button class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[180px]">
-                              📊 Dashboard
-                          </button>
-                      {% else %}
-                          <a href="{% url 'custom_login' %}" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
-                              🔐 Login to Start
-                          </a>
-                          <button class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[160px]">
-                              👀 View Demo
-                          </button>
-                      {% endif %}
-                  </div>
+<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+    {% if user.is_authenticated %}
+        <button class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[200px]">
+            🚀 Start Analysis
+        </button>
+        <a href="{% url 'dashboard' %}" class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
+            📊 Dashboard
+        </a>
+    {% else %}
+        <a href="{% url 'custom_login' %}" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
+            🔐 Login to Start
+        </a>
+        <button class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[160px]">
+            👀 View Demo
+        </button>
+    {% endif %}
+</div>
+
                   
                   <!-- Stats -->
                   <div class="mt-12 pt-8 border-t border-lavender-200/50">

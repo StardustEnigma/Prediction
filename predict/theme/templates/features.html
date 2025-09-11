@@ -1,0 +1,659 @@
+{% extends 'base.html' %}
+
+{% block title %}Features - Employee Retention Predictor - ML Analytics Platform{% endblock %}
+
+{% block content %}
+<style>
+    /* Enhanced Animations */
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
+        50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.5); }
+    }
+    
+    @keyframes slide-up {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Enhanced Card Styles */
+    .feature-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f5ff 100%);
+        border: 1px solid rgba(139, 92, 246, 0.1);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation: slide-up 0.6s ease-out;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #8b5cf6, #a78bfa, #c4b5fd);
+        border-radius: inherit;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: -1;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+    }
+    
+    .feature-card:hover::before {
+        opacity: 1;
+    }
+    
+    /* Floating Icons */
+    .float-icon {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Gradient Text Enhancement */
+    .gradient-text-enhanced {
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #8b5cf6 100%);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shift 3s ease infinite;
+    }
+    
+    @keyframes gradient-shift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Stats Counter Animation */
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    /* Progress Bar Animations */
+    .progress-bar {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .progress-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
+    /* Interactive Badges */
+    .feature-badge {
+        background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        animation: pulse-glow 2s infinite;
+    }
+    
+    /* Decorative Elements */
+    .decoration-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(40px);
+        opacity: 0.3;
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .blob-1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(135deg, #8b5cf6, #ec4899);
+        top: -150px;
+        right: -150px;
+    }
+    
+    .blob-2 {
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        bottom: -125px;
+        left: -125px;
+        animation-delay: 3s;
+    }
+</style>
+
+<!-- Enhanced Features Hero Section -->
+<div class="hero-bg text-gray-900 relative overflow-hidden">
+    <!-- Decorative Blobs -->
+    <div class="decoration-blob blob-1"></div>
+    <div class="decoration-blob blob-2"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 relative z-10">
+        <div class="text-center">
+            <!-- Animated Badge -->
+            <div class="mb-6">
+                <span class="feature-badge">🚀 NEXT-GEN ML PLATFORM</span>
+            </div>
+            
+            <!-- Enhanced Main Heading -->
+            <div class="mb-8">
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight">
+                    <span class="block text-gray-900 mb-3">
+                        Advanced ML Features
+                    </span>
+                    <span class="block gradient-text-enhanced">
+                        Built for HR Excellence
+                    </span>
+                </h1>
+            </div>
+            
+            <!-- Enhanced Description -->
+            <div class="mb-12">
+                <p class="text-xl sm:text-2xl text-lavender-700 font-medium leading-relaxed max-w-3xl mx-auto">
+                    Discover powerful machine learning capabilities designed to transform your HR operations 
+                    with predictive analytics, real-time insights, and actionable intelligence.
+                </p>
+            </div>
+            
+            <!-- Animated Feature Highlights -->
+            <div class="flex flex-wrap justify-center items-center gap-6 text-sm font-semibold">
+                <div class="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:scale-105 transition-transform">
+                    <span class="w-3 h-3 bg-gradient-to-r from-green-400 to-green-600 rounded-full animate-pulse"></span>
+                    <span class="text-gray-800">Machine Learning Powered</span>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:scale-105 transition-transform">
+                    <span class="w-3 h-3 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full animate-pulse"></span>
+                    <span class="text-gray-800">Real-time Processing</span>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:scale-105 transition-transform">
+                    <span class="w-3 h-3 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full animate-pulse"></span>
+                    <span class="text-gray-800">Enterprise Security</span>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg flex items-center gap-3 hover:scale-105 transition-transform">
+                    <span class="w-3 h-3 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full animate-pulse"></span>
+                    <span class="text-gray-800">Custom Reports</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced Core Features Section -->
+<div class="py-20 lavender-bg relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="feature-badge mb-4">CORE CAPABILITIES</span>
+            <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+                Powered by Advanced ML
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
+                Our platform combines cutting-edge machine learning with intuitive design 
+                to deliver unparalleled insights into employee retention.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Feature 1: Predictive Analytics -->
+            <div class="feature-card p-8 rounded-2xl group">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Predictive Analytics Engine</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Advanced ML algorithms analyze employee patterns to predict turnover risk with unprecedented accuracy.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-purple-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">95% Accuracy Rate</span>
+                    </div>
+                    <div class="flex items-center bg-purple-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">30-day to 12-month predictions</span>
+                    </div>
+                    <div class="flex items-center bg-purple-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-purple-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Confidence scoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Risk Analytics -->
+            <div class="feature-card p-8 rounded-2xl group" style="animation-delay: 0.1s">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Intelligent Risk Scoring</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Identify high-risk employees and departments with intelligent scoring algorithms.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Department-level analytics</span>
+                    </div>
+                    <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Individual risk profiles</span>
+                    </div>
+                    <div class="flex items-center bg-blue-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-blue-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Trend identification</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3: Automated Reports -->
+            <div class="feature-card p-8 rounded-2xl group" style="animation-delay: 0.2s">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Automated Reporting</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Generate comprehensive reports with personalized recommendations automatically.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-green-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Scheduled delivery</span>
+                    </div>
+                    <div class="flex items-center bg-green-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Custom templates</span>
+                    </div>
+                    <div class="flex items-center bg-green-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Executive dashboards</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4: Real-time Monitoring -->
+            <div class="feature-card p-8 rounded-2xl group" style="animation-delay: 0.3s">
+                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Real-time Monitoring</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Monitor employee engagement metrics in real-time with instant alerts.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-orange-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Live dashboard updates</span>
+                    </div>
+                    <div class="flex items-center bg-orange-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Instant risk alerts</span>
+                    </div>
+                    <div class="flex items-center bg-orange-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-orange-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">24/7 monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 5: Data Integration -->
+            <div class="feature-card p-8 rounded-2xl group" style="animation-delay: 0.4s">
+                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Seamless Integration</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Connect with existing HR systems for comprehensive data analysis.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-indigo-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">API integrations</span>
+                    </div>
+                    <div class="flex items-center bg-indigo-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">CSV/Excel import</span>
+                    </div>
+                    <div class="flex items-center bg-indigo-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Automated sync</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 6: Custom Insights -->
+            <div class="feature-card p-8 rounded-2xl group" style="animation-delay: 0.5s">
+                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6 float-icon shadow-xl">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Custom AI Insights</h3>
+                <p class="text-gray-700 font-medium mb-6">
+                    Leverage AI to uncover unique insights specific to your organization.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center bg-pink-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Sentiment analysis</span>
+                    </div>
+                    <div class="flex items-center bg-pink-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Pattern recognition</span>
+                    </div>
+                    <div class="flex items-center bg-pink-50 px-4 py-2 rounded-lg">
+                        <span class="w-2 h-2 bg-pink-500 rounded-full mr-3 animate-pulse"></span>
+                        <span class="text-sm font-medium text-gray-700">Personalized tips</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Section -->
+<div class="py-20 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4">Platform Performance</h2>
+            <p class="text-xl text-purple-200">Real results from real organizations</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="stat-number">95%</div>
+                <div class="text-purple-200 font-medium mt-2">Prediction Accuracy</div>
+            </div>
+            <div class="text-center">
+                <div class="stat-number">45%</div>
+                <div class="text-purple-200 font-medium mt-2">Reduced Turnover</div>
+            </div>
+            <div class="text-center">
+                <div class="stat-number">3.2x</div>
+                <div class="text-purple-200 font-medium mt-2">ROI Increase</div>
+            </div>
+            <div class="text-center">
+                <div class="stat-number">24/7</div>
+                <div class="text-purple-200 font-medium mt-2">Real-time Monitoring</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Advanced Features Section with Visual Dashboard -->
+<div class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="feature-badge mb-4">ADVANCED ANALYTICS</span>
+            <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+                Enterprise-Grade Features
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto font-medium">
+                Go beyond basic predictions with sophisticated analytics tools designed for enterprise HR operations.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Feature List -->
+            <div class="space-y-8">
+                <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Workforce Planning & Optimization</h3>
+                        <p class="text-gray-700 font-medium">
+                            Optimize team composition and predict future hiring needs based on retention patterns and business growth projections.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Performance Impact Analysis</h3>
+                        <p class="text-gray-700 font-medium">
+                            Correlate retention risks with performance metrics to identify top talent at risk and prioritize retention efforts.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-4 group">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Cultural Insights Engine</h3>
+                        <p class="text-gray-700 font-medium">
+                            Analyze company culture impact on retention through advanced text analysis of employee feedback and survey responses.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Dashboard Preview -->
+            <div class="bg-gradient-to-br from-lavender-100 to-purple-100 p-8 rounded-2xl shadow-2xl">
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-xl font-bold text-gray-900">Live Analytics Dashboard</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs font-semibold rounded-full animate-pulse">
+                            LIVE
+                        </span>
+                    </div>
+                    
+                    <!-- Animated Risk Overview -->
+                    <div class="mb-6">
+                        <h5 class="text-sm font-semibold text-gray-700 mb-4">Retention Risk Distribution</h5>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">Low Risk</span>
+                                    <span class="text-sm font-bold text-green-600">65%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full progress-bar" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">Medium Risk</span>
+                                    <span class="text-sm font-bold text-yellow-600">25%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 h-3 rounded-full progress-bar" style="width: 25%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-600">High Risk</span>
+                                    <span class="text-sm font-bold text-red-600">10%</span>
+                                </div>
+                                <div class="bg-gray-200 rounded-full h-3 overflow-hidden">
+                                    <div class="bg-gradient-to-r from-red-400 to-red-600 h-3 rounded-full progress-bar" style="width: 10%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-purple-600 mb-1">95%</div>
+                            <div class="text-xs text-gray-600 font-medium">Prediction Accuracy</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-blue-600 mb-1">2.3K</div>
+                            <div class="text-xs text-gray-600 font-medium">Employees Analyzed</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-green-600 mb-1">87%</div>
+                            <div class="text-xs text-gray-600 font-medium">Retention Rate</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded-xl">
+                            <div class="text-3xl font-bold text-orange-600 mb-1">24/7</div>
+                            <div class="text-xs text-gray-600 font-medium">Real-time Monitor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced CTA Section -->
+<div class="py-20 bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 text-white relative overflow-hidden">
+    <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl opacity-20 animate-float"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500 rounded-full filter blur-3xl opacity-20 animate-float" style="animation-delay: 3s"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <div class="mb-8">
+            <span class="inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
+                🎯 START YOUR TRANSFORMATION TODAY
+            </span>
+        </div>
+        
+        <h2 class="text-4xl sm:text-5xl font-bold mb-6">
+            Ready to Transform Your HR Operations?
+        </h2>
+        <p class="text-xl text-purple-200 mb-10 font-medium">
+            Join leading organizations using AI-powered analytics to reduce turnover 
+            and make data-driven HR decisions.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            {% if user.is_authenticated %}
+                <a href="{% url "dashboard" %}" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-purple-900 bg-white rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl">
+                    <span class="relative z-10">🚀 Go to Dashboard</span>
+                </a>
+                <a href="{% url "employee:upload_csv" %}" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white/30 rounded-2xl hover:bg-white/10 transition-all duration-300">
+                    <span>📊 Start Prediction</span>
+                </a>
+            {% else %}
+                <a href="{% url 'custom_login' %}" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-purple-900 bg-white rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-3xl">
+                    <span class="relative z-10">🔐 Get Started Free</span>
+                </a>
+                <a href="{% url "employee:feedback" %}" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white border-2 border-white/30 rounded-2xl hover:bg-white/10 transition-all duration-300">
+                    <span>💬 Schedule Demo</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced FAQ Section -->
+<div class="py-20 lavender-bg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="feature-badge mb-4">FAQ</span>
+            <h2 class="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+                Frequently Asked Questions
+            </h2>
+            <p class="text-xl text-gray-700 font-medium">
+                Everything you need to know about our platform
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 group-hover:scale-110 transition-transform">
+                        <span class="text-white font-bold">?</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How accurate are the predictions?</h3>
+                        <p class="text-gray-700 font-medium leading-relaxed">
+                            Our machine learning models achieve 95% accuracy in predicting employee turnover by analyzing multiple data points including performance metrics, engagement scores, compensation data, and behavioral patterns. The accuracy improves over time as the system learns from your organization's specific patterns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 group-hover:scale-110 transition-transform">
+                        <span class="text-white font-bold">?</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">What data sources can be integrated?</h3>
+                        <p class="text-gray-700 font-medium leading-relaxed">
+                            The platform integrates with major HRIS systems, payroll platforms, performance management tools, and accepts CSV/Excel uploads. We support API integrations with popular systems like Workday, BambooHR, ADP, and many more through our flexible integration framework.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 group-hover:scale-110 transition-transform">
+                        <span class="text-white font-bold">?</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">How is employee privacy protected?</h3>
+                        <p class="text-gray-700 font-medium leading-relaxed">
+                            All data is encrypted using AES-256 encryption in transit and at rest. We follow enterprise-grade security protocols, comply with GDPR, SOC 2, and HIPAA standards, and ensure all personally identifiable information is anonymized in our analytics models. Role-based access controls ensure data is only visible to authorized personnel.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow group">
+                <div class="flex items-start">
+                    <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center flex-shrink-0 mr-4 group-hover:scale-110 transition-transform">
+                        <span class="text-white font-bold">?</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Can the system handle large organizations?</h3>
+                        <p class="text-gray-700 font-medium leading-relaxed">
+                            Yes, our cloud-based infrastructure scales automatically to handle organizations of any size, from startups to Fortune 500 companies with hundreds of thousands of employees. The platform uses distributed computing and intelligent caching to ensure fast performance regardless of data volume.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

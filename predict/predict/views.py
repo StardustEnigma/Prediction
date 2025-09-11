@@ -50,3 +50,28 @@ def president_login(request):
 def president_logout(request):
     logout(request)
     return redirect('president_login')
+
+from django.shortcuts import render
+from django.views.decorators.cache import cache_page
+
+def features_view(request):
+    """
+    Display the features landing page with ML Analytics platform capabilities.
+    """
+    context = {
+        'page_title': 'Features - ML Analytics Platform',
+        'meta_description': 'Discover powerful machine learning features for employee retention prediction and HR analytics.',
+    }
+    return render(request, 'features.html', context)
+
+
+@cache_page(60 * 60)
+def cached_features_view(request):
+    """
+    Cached version of features page for better performance.
+    """
+    context = {
+        'page_title': 'Features - ML Analytics Platform',
+        'meta_description': 'Discover powerful machine learning features for employee retention prediction and HR analytics.',
+    }
+    return render(request, 'features.html', context)

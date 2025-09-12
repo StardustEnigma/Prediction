@@ -24,7 +24,7 @@ urlpatterns = [
     path('',views.home,  name='home'),
     path("login/", views.custom_login, name="custom_login"),
     path("logout/", views.custom_logout, name="custom_logout"),
-    path('dashboard',views.dash,name='dashboard'),
+    
     path('employee/',include('employee.urls',namespace='employee')),
     path('login-president/', views.president_login, name='president_login'),
     path('logout-president/', views.president_logout, name='president_logout'),

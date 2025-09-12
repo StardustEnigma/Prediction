@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.utils import timezone
 
 
 # Custom President user model
@@ -77,15 +78,15 @@ class EmployeeAttrition(models.Model):
     education = models.CharField(max_length=12, choices=EDUCATION_CHOICES, default='Bachelor')
 
     attrition = models.BooleanField(default=False)
-    
-    # ✅ NEW FIELDS - Add these two lines
+
+    # ✅ NEW FIELDS
     attrition_probability = models.FloatField(
-        null=True, 
-        blank=True, 
+        null=True,
+        blank=True,
         help_text="ML-predicted attrition risk percentage"
     )
     is_retained = models.BooleanField(
-        default=False, 
+        default=False,
         help_text="Automatically set to True if attrition risk < 25%"
     )
 
@@ -99,7 +100,8 @@ class EmployeeAttrition(models.Model):
         default='Feedback Form'
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)  # ✅ Add timestamp
+    # ✅ Correct way to handle timestamp with timezone
+    created_at = models.DateTimeField(default=timezone.now, editable=False)
 
     def __str__(self):
         return f"{self.employee_id} - {self.name} - {self.marital_status}"

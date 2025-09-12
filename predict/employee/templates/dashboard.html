@@ -1,0 +1,704 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard - AttritionAI{% endblock %}
+{% block content %}
+<!-- Dashboard Hero Section with Animated Background -->
+<div class="relative overflow-hidden bg-gradient-to-br from-purple-50 via-lavender-50 to-pink-50 py-16">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-40 left-1/2 w-80 h-80 bg-lavender-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header with Typing Animation -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center px-4 py-2 mb-6 text-sm font-semibold text-purple-700 bg-purple-100 rounded-full animate-pulse">
+                <span class="mr-2">🚀</span> Real-time Analytics Dashboard
+            </div>
+            
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 animate-fade-in">
+                Analytics <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 animate-gradient">Dashboard</span>
+            </h1>
+            <p class="text-xl text-gray-700 font-medium max-w-3xl mx-auto leading-relaxed animate-slide-up">
+                Harness the power of AI to predict and prevent employee attrition with real-time insights
+            </p>
+        </div>
+
+        <!-- Key Metrics Cards with Glassmorphism -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <!-- Total Employees -->
+            <div class="group relative glass-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.1s;">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 counter" data-target="{{ total_employees }}">0</div>
+                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Total Employees</div>
+                    <div class="mt-3 flex items-center justify-center text-xs text-gray-500">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            <span class="mr-1">📊</span> Active Workforce
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Retained Employees -->
+            <div class="group relative glass-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2 counter" data-target="{{ retained_employees }}">0</div>
+                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">Retained</div>
+                    <div class="mt-3 flex items-center justify-center text-xs text-gray-500">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <span class="mr-1">✅</span> Low Risk
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Risk Employees -->
+            <div class="group relative glass-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.3s;">
+                <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-pink-400 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-red-600 to-pink-600 bg-clip-text text-transparent mb-2 counter" data-target="{{ high_risk }}">0</div>
+                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">High Risk</div>
+                    <div class="mt-3 flex items-center justify-center text-xs text-gray-500">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                            <span class="mr-1">⚠️</span> ≥75% Risk
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attrition Rate -->
+            <div class="group relative glass-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.4s;">
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-amber-400 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-transform duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent mb-2 counter" data-target="{{ attrition_employees }}">0</div>
+                    <div class="text-sm font-semibold text-gray-600 uppercase tracking-wider">At-Risk</div>
+                    <div class="mt-3 flex items-center justify-center text-xs text-gray-500">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                            <span class="mr-1">📈</span> {{ attrition_rate }}% Rate
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Distribution with Modern Progress Bars -->
+        <div class="glass-card p-8 rounded-2xl animate-fade-in-up" style="animation-delay: 0.5s;">
+            <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">
+                Risk Distribution <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Overview</span>
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Low Risk -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div class="relative p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-semibold text-gray-700">Low Risk</span>
+                            <span class="text-2xl font-bold text-green-600">{{ low_risk }}</span>
+                        </div>
+                        <div class="relative h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full progress-bar" 
+                                 style="width: {{ low_risk_percentage }}%"></div>
+                            <div class="absolute inset-0 bg-white opacity-30 animate-shimmer"></div>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs text-gray-500">0-49% Risk</span>
+                            <span class="text-sm font-bold text-green-600">{{ low_risk_percentage }}%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medium Risk -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-400 rounded-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div class="relative p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-semibold text-gray-700">Medium Risk</span>
+                            <span class="text-2xl font-bold text-yellow-600">{{ medium_risk }}</span>
+                        </div>
+                        <div class="relative h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-amber-500 rounded-full progress-bar" 
+                                 style="width: {{ medium_risk_percentage }}%"></div>
+                            <div class="absolute inset-0 bg-white opacity-30 animate-shimmer"></div>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs text-gray-500">50-74% Risk</span>
+                            <span class="text-sm font-bold text-yellow-600">{{ medium_risk_percentage }}%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- High Risk -->
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-pink-400 rounded-lg opacity-20 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <div class="relative p-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm font-semibold text-gray-700">High Risk</span>
+                            <span class="text-2xl font-bold text-red-600">{{ high_risk }}</span>
+                        </div>
+                        <div class="relative h-4 bg-gray-200 rounded-full overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-red-400 to-pink-500 rounded-full progress-bar" 
+                                 style="width: {{ high_risk_percentage }}%"></div>
+                            <div class="absolute inset-0 bg-white opacity-30 animate-shimmer"></div>
+                        </div>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-xs text-gray-500">75-100% Risk</span>
+                            <span class="text-sm font-bold text-red-600">{{ high_risk_percentage }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Analytics Section with Modern Design -->
+<div class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Risk Factor Analysis Chart with Chart.js -->
+        <div class="glass-card-white p-10 rounded-3xl mb-12 shadow-2xl animate-fade-in-up">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center justify-center px-4 py-2 mb-6 text-sm font-semibold text-indigo-700 bg-indigo-100 rounded-full">
+                    <span class="mr-2">📊</span> ML-Powered Insights
+                </div>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">
+                    Risk Factor <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Analysis</span>
+                </h2>
+                <p class="text-gray-600 font-medium max-w-3xl mx-auto text-lg">
+                    AI-driven insights into the key factors influencing employee retention
+                </p>
+            </div>
+            
+            <!-- Chart Container with Chart.js -->
+            <div class="relative bg-white rounded-2xl p-6 shadow-inner">
+                <div style="position: relative; height: 400px; width: 100%;">
+                    <canvas id="riskFactorChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions with Modern Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Upload CSV Action -->
+            <div class="group relative overflow-hidden glass-card-white p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-in-up" style="animation-delay: 0.6s;">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Upload CSV</h3>
+                    <p class="text-gray-600 mb-6">Analyze employee data in bulk with AI</p>
+                    <a href="{% url 'employee:upload_csv' %}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span class="mr-2">📊</span> Analyze Data
+                    </a>
+                </div>
+            </div>
+
+            <!-- View Reports Action -->
+            <div class="group relative overflow-hidden glass-card-white p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-in-up" style="animation-delay: 0.7s;">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">View Reports</h3>
+                    <p class="text-gray-600 mb-6">Detailed analytics and insights</p>
+                    <a href="{% url 'employee:reports' %}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-500 to-pink-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span class="mr-2">📋</span> View Reports
+                    </a>
+                </div>
+            </div>
+
+            <!-- Feedback Form Action -->
+            <div class="group relative overflow-hidden glass-card-white p-8 rounded-2xl text-center shadow-xl hover:shadow-2xl transition-all duration-500 animate-fade-in-up" style="animation-delay: 0.8s;">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-gradient-to-br from-green-400 to-emerald-400 rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500"></div>
+                <div class="relative">
+                    <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13.5 7a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Risk Assessment</h3>
+                    <p class="text-gray-600 mb-6">Individual employee evaluation</p>
+                    <a href="{% url 'employee:feedback' %}" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-semibold rounded-xl hover:from-green-600 hover:to-emerald-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        <span class="mr-2">📝</span> Get Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Enhanced CSS with Modern Animations -->
+<style>
+    /* Glassmorphism Effects */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+    
+    .glass-card-white {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Animations */
+    @keyframes blob {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+    }
+    
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slide-up {
+        from { 
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+    
+    /* Animation Classes */
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+    
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 5s ease infinite;
+    }
+    
+    .animate-fade-in {
+        animation: fade-in 1s ease-out;
+    }
+    
+    .animate-slide-up {
+        animation: slide-up 1s ease-out;
+    }
+    
+    .animate-fade-in-up {
+        opacity: 0;
+        animation: fade-in-up 0.8s ease-out forwards;
+    }
+    
+    .animate-shimmer {
+        animation: shimmer 2s infinite;
+    }
+    
+    /* Progress Bar Animation */
+    .progress-bar {
+        animation: progress-fill 1.5s ease-out;
+    }
+    
+    @keyframes progress-fill {
+        from { width: 0; }
+    }
+    
+    /* Counter Animation */
+    .counter {
+        display: inline-block;
+        min-width: 3ch;
+    }
+    
+    /* Hover Effects */
+    .group:hover .group-hover\:rotate-12 {
+        transform: rotate(12deg);
+    }
+    
+    .group:hover .group-hover\:scale-110 {
+        transform: scale(1.1);
+    }
+    
+    .group:hover .group-hover\:rotate-3 {
+        transform: rotate(3deg) scale(1.1);
+    }
+    
+    .group:hover .group-hover\:scale-150 {
+        transform: scale(1.5);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .glass-card {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .animate-blob {
+            display: none;
+        }
+    }
+</style>
+
+<!-- Chart.js CDN and Configuration -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+
+<!-- Advanced JavaScript for Interactions -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Chart.js
+    const ctx = document.getElementById('riskFactorChart').getContext('2d');
+    
+    // AttritionAI Color Palette
+    const colors = {
+        primary: ['#8B5CF6', '#A855F7', '#9333EA', '#7E22CE', '#6B21A8', '#581C87'],
+        primaryRGB: [
+            'rgba(139, 92, 246, 0.8)',
+            'rgba(168, 85, 247, 0.8)',
+            'rgba(147, 51, 234, 0.8)',
+            'rgba(126, 34, 206, 0.8)',
+            'rgba(107, 33, 168, 0.8)',
+            'rgba(88, 28, 135, 0.8)'
+        ],
+        border: [
+            'rgba(139, 92, 246, 1)',
+            'rgba(168, 85, 247, 1)',
+            'rgba(147, 51, 234, 1)',
+            'rgba(126, 34, 206, 1)',
+            'rgba(107, 33, 168, 1)',
+            'rgba(88, 28, 135, 1)'
+        ]
+    };
+    
+    const riskFactorChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [
+                'Job Satisfaction',
+                'Working Hours', 
+                'Environment',
+                'Distance',
+                'Health Condition',
+                'Years Experience'
+            ],
+            datasets: [{
+                label: 'Impact on Attrition Risk (%)',
+                data: [45, 30, 25, 20, 15, 10],
+                backgroundColor: colors.primaryRGB,
+                borderColor: colors.border,
+                borderWidth: 2,
+                borderRadius: {
+                    topLeft: 8,
+                    topRight: 8,
+                    bottomLeft: 4,
+                    bottomRight: 4
+                },
+                borderSkipped: false,
+                hoverBackgroundColor: colors.border,
+                hoverBorderColor: '#FFFFFF',
+                hoverBorderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index'
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Top Risk Factors Contributing to Employee Attrition',
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                        family: 'Inter'
+                    },
+                    color: '#1F2937',
+                    padding: {
+                        top: 10,
+                        bottom: 30
+                    }
+                },
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 13
+                    },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            return tooltipItems[0].label;
+                        },
+                        label: function(context) {
+                            return `Impact: ${context.parsed.y}% risk increase`;
+                        },
+                        afterLabel: function(context) {
+                            const descriptions = {
+                                'Job Satisfaction': 'Low satisfaction strongly predicts turnover',
+                                'Working Hours': 'Excessive hours increase burnout risk',
+                                'Environment': 'Poor workplace culture affects retention',
+                                'Distance': 'Long commutes reduce job satisfaction',
+                                'Health Condition': 'Health issues impact job performance',
+                                'Years Experience': 'New employees are at higher risk'
+                            };
+                            return descriptions[context.label] || '';
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 50,
+                    title: {
+                        display: true,
+                        text: 'Impact Percentage (%)',
+                        font: {
+                            size: 14,
+                            weight: 'bold',
+                            family: 'Inter'
+                        },
+                        color: '#4B5563'
+                    },
+                    grid: {
+                        color: 'rgba(156, 163, 175, 0.2)',
+                        lineWidth: 1
+                    },
+                    ticks: {
+                        color: '#6B7280',
+                        font: {
+                            size: 12,
+                            family: 'Inter'
+                        },
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Risk Factors (ML Model Features)',
+                        font: {
+                            size: 14,
+                            weight: 'bold',
+                            family: 'Inter'
+                        },
+                        color: '#4B5563'
+                    },
+                    grid: {
+                        display: false
+                    },
+                    ticks: {
+                        color: '#6B7280',
+                        font: {
+                            size: 11,
+                            family: 'Inter'
+                        },
+                        maxRotation: 45,
+                        minRotation: 0
+                    }
+                }
+            },
+            animation: {
+                duration: 2000,
+                easing: 'easeInOutQuart',
+                delay: function(context) {
+                    return context.dataIndex * 200;
+                }
+            },
+            onHover: function(event, activeElements) {
+                event.native.target.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
+            }
+        }
+    });
+
+    // Add loading effect for chart
+    riskFactorChart.canvas.parentNode.style.opacity = '0';
+    setTimeout(() => {
+        riskFactorChart.canvas.parentNode.style.transition = 'opacity 0.5s ease-in-out';
+        riskFactorChart.canvas.parentNode.style.opacity = '1';
+    }, 500);
+
+    // Counter Animation Function
+    function animateCounters() {
+        const counters = document.querySelectorAll('.counter');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const increment = target / (duration / 16);
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.ceil(current);
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = target;
+                        }
+                    };
+                    
+                    updateCounter();
+                    observer.unobserve(counter);
+                }
+            });
+        });
+        
+        counters.forEach(counter => observer.observe(counter));
+    }
+
+    // Animate Progress Bars
+    function animateProgressBars() {
+        const progressBars = document.querySelectorAll('.progress-bar');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.style.width || '0%';
+                }
+            });
+        });
+        
+        progressBars.forEach(bar => observer.observe(bar));
+    }
+
+    // Initialize Parallax Effect
+    function initParallax() {
+        const elements = document.querySelectorAll('.animate-blob');
+        let ticking = false;
+        
+        function updateParallax() {
+            const scrollTop = window.pageYOffset;
+            elements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrollTop * speed);
+                element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+            });
+            ticking = false;
+        }
+        
+        function requestParallaxTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', requestParallaxTick);
+    }
+
+    // Performance Optimization for Mobile
+    function optimizePerformance() {
+        if (window.innerWidth < 768) {
+            document.body.classList.add('mobile-optimized');
+            const complexAnimations = document.querySelectorAll('.animate-blob');
+            complexAnimations.forEach(element => {
+                element.style.animation = 'none';
+            });
+        }
+    }
+
+    // Initialize all functions
+    animateCounters();
+    animateProgressBars();
+    initParallax();
+    optimizePerformance();
+});
+
+// Add CSS class for mobile optimization
+const mobileStyles = `
+    .mobile-optimized .glass-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .mobile-optimized .animate-fade-in-up {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+`;
+
+const styleSheet = document.createElement('style');
+styleSheet.textContent = mobileStyles;
+document.head.appendChild(styleSheet);
+</script>
+{% endblock %}

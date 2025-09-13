@@ -26,7 +26,7 @@
             </p>
         </div>
 
-        <!-- Key Metrics Cards with Glassmorphism -->
+        <!-- Key Metrics Cards remain the same -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             <!-- Total Employees -->
             <div class="group relative glass-card p-6 rounded-2xl transform hover:scale-105 transition-all duration-500 hover:shadow-2xl animate-fade-in-up" style="animation-delay: 0.1s;">
@@ -178,24 +178,51 @@
 <!-- Analytics Section with Modern Design -->
 <div class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Risk Factor Analysis Chart with Chart.js -->
+        <!-- Charts Section with Side-by-Side Layout -->
         <div class="glass-card-white p-10 rounded-3xl mb-12 shadow-2xl animate-fade-in-up">
             <div class="text-center mb-10">
                 <div class="inline-flex items-center justify-center px-4 py-2 mb-6 text-sm font-semibold text-indigo-700 bg-indigo-100 rounded-full">
                     <span class="mr-2">📊</span> ML-Powered Insights
                 </div>
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">
-                    Risk Factor <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Analysis</span>
+                    Advanced <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Analytics</span>
                 </h2>
                 <p class="text-gray-600 font-medium max-w-3xl mx-auto text-lg">
-                    AI-driven insights into the key factors influencing employee retention
+                    AI-driven insights into key factors and risk distribution patterns
                 </p>
             </div>
             
-            <!-- Chart Container with Chart.js -->
-            <div class="relative bg-white rounded-2xl p-6 shadow-inner">
-                <div style="position: relative; height: 400px; width: 100%;">
-                    <canvas id="riskFactorChart"></canvas>
+            <!-- Charts Container -->
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <!-- Risk Factor Analysis Chart -->
+                <div class="bg-white rounded-2xl p-6 shadow-inner">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Risk Factor Impact Analysis</h3>
+                    <div style="position: relative; height: 400px; width: 100%;">
+                        <canvas id="riskFactorChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Risk Distribution Pie Chart -->
+                <div class="bg-white rounded-2xl p-6 shadow-inner">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Employee Risk Distribution</h3>
+                    <div style="position: relative; height: 400px; width: 100%;">
+                        <canvas id="riskDistributionChart"></canvas>
+                    </div>
+                    <!-- Legend for Pie Chart -->
+                    <div class="flex justify-center mt-4 space-x-6">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 rounded-full mr-2"></div>
+                            <span class="text-sm font-medium text-gray-700">Low Risk</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-yellow-500 rounded-full mr-2"></div>
+                            <span class="text-sm font-medium text-gray-700">Medium Risk</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-red-500 rounded-full mr-2"></div>
+                            <span class="text-sm font-medium text-gray-700">High Risk</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -406,9 +433,6 @@
 <!-- Advanced JavaScript for Interactions -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Chart.js
-    const ctx = document.getElementById('riskFactorChart').getContext('2d');
-    
     // AttritionAI Color Palette
     const colors = {
         primary: ['#8B5CF6', '#A855F7', '#9333EA', '#7E22CE', '#6B21A8', '#581C87'],
@@ -427,10 +451,22 @@ document.addEventListener('DOMContentLoaded', function() {
             'rgba(126, 34, 206, 1)',
             'rgba(107, 33, 168, 1)',
             'rgba(88, 28, 135, 1)'
-        ]
+        ],
+        riskColors: {
+            low: 'rgba(34, 197, 94, 0.8)',
+            medium: 'rgba(234, 179, 8, 0.8)',
+            high: 'rgba(239, 68, 68, 0.8)'
+        },
+        riskBorders: {
+            low: 'rgba(34, 197, 94, 1)',
+            medium: 'rgba(234, 179, 8, 1)',
+            high: 'rgba(239, 68, 68, 1)'
+        }
     };
-    
-    const riskFactorChart = new Chart(ctx, {
+
+    // Initialize Risk Factor Bar Chart
+    const ctx1 = document.getElementById('riskFactorChart').getContext('2d');
+    const riskFactorChart = new Chart(ctx1, {
         type: 'bar',
         data: {
             labels: [
@@ -467,20 +503,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 mode: 'index'
             },
             plugins: {
-                title: {
-                    display: true,
-                    text: 'Top Risk Factors Contributing to Employee Attrition',
-                    font: {
-                        size: 18,
-                        weight: 'bold',
-                        family: 'Inter'
-                    },
-                    color: '#1F2937',
-                    padding: {
-                        top: 10,
-                        bottom: 30
-                    }
-                },
                 legend: {
                     display: false
                 },
@@ -528,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         display: true,
                         text: 'Impact Percentage (%)',
                         font: {
-                            size: 14,
+                            size: 12,
                             weight: 'bold',
                             family: 'Inter'
                         },
@@ -541,7 +563,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ticks: {
                         color: '#6B7280',
                         font: {
-                            size: 12,
+                            size: 10,
                             family: 'Inter'
                         },
                         callback: function(value) {
@@ -552,9 +574,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 x: {
                     title: {
                         display: true,
-                        text: 'Risk Factors (ML Model Features)',
+                        text: 'Risk Factors',
                         font: {
-                            size: 14,
+                            size: 12,
                             weight: 'bold',
                             family: 'Inter'
                         },
@@ -566,7 +588,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ticks: {
                         color: '#6B7280',
                         font: {
-                            size: 11,
+                            size: 9,
                             family: 'Inter'
                         },
                         maxRotation: 45,
@@ -580,19 +602,128 @@ document.addEventListener('DOMContentLoaded', function() {
                 delay: function(context) {
                     return context.dataIndex * 200;
                 }
-            },
-            onHover: function(event, activeElements) {
-                event.native.target.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
             }
         }
     });
 
-    // Add loading effect for chart
-    riskFactorChart.canvas.parentNode.style.opacity = '0';
-    setTimeout(() => {
-        riskFactorChart.canvas.parentNode.style.transition = 'opacity 0.5s ease-in-out';
-        riskFactorChart.canvas.parentNode.style.opacity = '1';
-    }, 500);
+    // Initialize Risk Distribution Pie Chart
+    const ctx2 = document.getElementById('riskDistributionChart').getContext('2d');
+    const riskDistributionChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ['Low Risk', 'Medium Risk', 'High Risk'],
+            datasets: [{
+                data: [{{ low_risk }}, {{ medium_risk }}, {{ high_risk }}],
+                backgroundColor: [
+                    colors.riskColors.low,
+                    colors.riskColors.medium,
+                    colors.riskColors.high
+                ],
+                borderColor: [
+                    colors.riskBorders.low,
+                    colors.riskBorders.medium,
+                    colors.riskBorders.high
+                ],
+                borderWidth: 3,
+                hoverBackgroundColor: [
+                    colors.riskBorders.low,
+                    colors.riskBorders.medium,
+                    colors.riskBorders.high
+                ],
+                hoverBorderColor: '#FFFFFF',
+                hoverBorderWidth: 4,
+                cutout: '60%',
+                spacing: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(17, 24, 39, 0.9)',
+                    titleColor: '#FFFFFF',
+                    bodyColor: '#FFFFFF',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: true,
+                    titleFont: {
+                        size: 14,
+                        weight: 'bold'
+                    },
+                    bodyFont: {
+                        size: 13
+                    },
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            return tooltipItems[0].label;
+                        },
+                        label: function(context) {
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((context.parsed / total) * 100).toFixed(1);
+                            return `${context.parsed} employees (${percentage}%)`;
+                        },
+                        afterLabel: function(context) {
+                            const descriptions = {
+                                'Low Risk': 'Employees with 0-49% attrition probability',
+                                'Medium Risk': 'Employees with 50-74% attrition probability',
+                                'High Risk': 'Employees with 75-100% attrition probability'
+                            };
+                            return descriptions[context.label] || '';
+                        }
+                    }
+                }
+            },
+            animation: {
+                animateRotate: true,
+                animateScale: true,
+                duration: 2000,
+                easing: 'easeInOutQuart'
+            },
+            onHover: function(event, activeElements) {
+                event.native.target.style.cursor = activeElements.length > 0 ? 'pointer' : 'default';
+            }
+        },
+        plugins: [{
+            // Custom plugin to display center text
+            id: 'centerText',
+            beforeDraw: function(chart) {
+                const ctx = chart.ctx;
+                const centerX = (chart.chartArea.left + chart.chartArea.right) / 2;
+                const centerY = (chart.chartArea.top + chart.chartArea.bottom) / 2;
+                
+                ctx.restore();
+                ctx.font = 'bold 16px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#374151';
+                
+                const total = chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                ctx.fillText(`${total}`, centerX, centerY - 8);
+                
+                ctx.font = '12px Inter';
+                ctx.fillStyle = '#6B7280';
+                ctx.fillText('Total Employees', centerX, centerY + 12);
+                ctx.save();
+            }
+        }]
+    });
+
+    // Add loading effect for charts
+    [riskFactorChart, riskDistributionChart].forEach((chart, index) => {
+        chart.canvas.parentNode.style.opacity = '0';
+        setTimeout(() => {
+            chart.canvas.parentNode.style.transition = 'opacity 0.5s ease-in-out';
+            chart.canvas.parentNode.style.opacity = '1';
+        }, 500 + (index * 200));
+    });
 
     // Counter Animation Function
     function animateCounters() {

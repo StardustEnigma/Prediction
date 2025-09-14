@@ -108,9 +108,45 @@
             border-color: rgba(168, 85, 247, 0.2);
         }
         
-        /* Hero Section - Lighter */
+        /* Hero Section with Enhanced Conference Room Background */
         .hero-bg {
-            background: linear-gradient(135deg, #fefcff 0%, #faf5ff 20%, #f3e8ff 40%, #ede9fe 60%, #e9d5ff 80%, #ddd6fe 100%);
+            background: 
+                /* Darker overlay with reduced opacity for more image visibility */
+                linear-gradient(
+                    135deg, 
+                    rgba(254, 252, 255, 0.85) 0%, 
+                    rgba(250, 245, 255, 0.80) 25%, 
+                    rgba(243, 232, 255, 0.75) 50%, 
+                    rgba(237, 233, 254, 0.70) 75%, 
+                    rgba(221, 214, 254, 0.80) 100%
+                ),
+                url('{% static "images/conference-room-setup-blog.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            /* Add contrast and brightness for enhanced clarity */
+            filter: contrast(1.1) brightness(0.9);
+        }
+        
+        /* Enhanced overlay for better text readability and darker effect */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* Darker overlay for better contrast */
+            background: rgba(139, 92, 246, 0.15);
+            pointer-events: none;
+        }
+        
+        /* Ensure content is above overlay */
+        .hero-bg > * {
+            position: relative;
+            z-index: 1;
         }
         
         /* Stats Section - Simplified */
@@ -144,6 +180,17 @@
         @media (max-width: 768px) {
             .hero-title { font-size: 2.5rem !important; }
             .hero-subtitle { font-size: 1.125rem !important; }
+            
+            /* Mobile background adjustments */
+            .hero-bg {
+                background-attachment: scroll; /* Better mobile performance */
+                background-position: center top;
+            }
+        }
+        
+        /* Enhanced text contrast on darker background */
+        .hero-content {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -186,9 +233,7 @@
               <!-- CTA Buttons -->
               <div class="hidden lg:flex items-center space-x-3">
                   {% if user.is_authenticated %}
-                      <a href="#" class="text-purple-100 hover:text-white font-medium px-3 py-2 rounded-lg">
-                          Help
-                      </a>
+                      
                      
                       <!-- User Profile Dropdown -->
                       <div class="relative">
@@ -274,10 +319,10 @@
   <!-- Main Content Area -->
   <main class="flex-grow">
       {% block content %}
-      <!-- Hero Section -->
+      <!-- Hero Section with Enhanced Conference Room Background -->
       <div class="hero-bg text-gray-900">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
-              <div class="text-center">
+              <div class="text-center hero-content">
                   
                   <!-- Main Heading -->
                   <div class="mb-8">
@@ -286,7 +331,7 @@
                               Employee Retention and Attrition
                           </span>
                           <span class="block text-transparent bg-clip-text bg-gradient-to-r from-lavender-700 to-lavender-500">
-                              AI Predictor
+                            
                           </span>
                       </h1>
                   </div>
@@ -300,24 +345,27 @@
                   </div>
                   
                   <!-- Call-to-Action Buttons -->
-<div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-    {% if user.is_authenticated %}
-        <button class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[200px]">
-            🚀 Start Analysis
-        </button>
-        <a href="{% url 'employee:dashboard' %}" class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
-            📊 Dashboard
-        </a>
-    {% else %}
-        <a href="{% url 'custom_login' %}" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
-            🔐 Login to Start
-        </a>
-        <button class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[160px]">
-            👀 View Demo
-        </button>
-    {% endif %}
-</div>
+                  <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
+                      {% if user.is_authenticated %}
+                          <button class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[200px]">
+                              <a href="{% url 'employee:upload_csv' %}" 
+   class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[200px]">
+    🚀 Start Analysis
+</a>
 
+                          </button>
+                          <a href="{% url 'employee:dashboard' %}" class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
+                              📊 Dashboard
+                          </a>
+                      {% else %}
+                          <a href="{% url 'custom_login' %}" class="btn-primary text-white px-8 py-3 rounded-xl font-semibold min-w-[180px] inline-block text-center">
+                              🔐 Login to Start
+                          </a>
+                          <button class="btn-secondary text-lavender-700 hover:text-lavender-800 px-8 py-3 rounded-xl font-semibold min-w-[160px]">
+                              👀 View Demo
+                          </button>
+                      {% endif %}
+                  </div>
                   
                   <!-- Stats -->
                   <div class="mt-12 pt-8 border-t border-lavender-200/50">

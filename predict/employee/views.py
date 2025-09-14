@@ -10,6 +10,7 @@ import csv
 from django.http import HttpResponse
 from django.db.models import Q
 from django.utils import timezone
+
 @login_required(login_url='custom_login')
 def reports(request):
     # Get search query

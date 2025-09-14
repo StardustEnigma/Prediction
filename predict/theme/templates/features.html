@@ -4,6 +4,19 @@
 
 {% block content %}
 <style>
+    /* Strong override to remove background image from base.html */
+    .hero-bg {
+        background-image: none !important;
+        background: linear-gradient(135deg, #fefcff 0%, #faf5ff 20%, #f3e8ff 40%, #ede9fe 60%, #e9d5ff 80%, #ddd6fe 100%) !important;
+        filter: none !important;
+        background-attachment: scroll !important;
+    }
+    
+    .hero-bg::before {
+        display: none !important;
+        background: none !important;
+    }
+
     /* Enhanced Animations */
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
